@@ -16,35 +16,17 @@
 
                 <div class="panel-body">
                     <div class="list-group p-4">
+                        @foreach($users as $user)
                         <div class="list-group-item mb-1"> 
                             <form class=" d-flex align-items-center" method="post" action="#">
                                 <img src="/images/default.jpg" style="width:50px;height:50px;"> 
-                                <a class="pl-3" href=""> User1 </a>
+                                <a class="pl-3" href=""> {{ $user->first_name }} {{ $user->last_name }} </a>
                                 <div class="ml-auto">
                                     <button class="btn btn-primary btn-sm" type="submit" name="submit"> Follow </button>
                                 </div>
                             </form>
                         </div>
-
-                        <div class="list-group-item mb-1"> 
-                            <form class=" d-flex align-items-center" method="post" action="#">
-                                <img src="/images/default.jpg" style="width:50px;height:50px;"> 
-                                <a class="pl-3" href=""> User2 </a>
-                                <div class="ml-auto">
-                                    <button class="btn btn-primary btn-sm" type="submit" name="submit"> Follow </button>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="list-group-item mb-1"> 
-                            <form class=" d-flex align-items-center" method="post" action="#">
-                                <img src="/images/default.jpg" style="width:50px;height:50px;"> 
-                                <a class="pl-3" href=""> User3 </a>
-                                <div class="ml-auto">
-                                    <button class="btn btn-primary btn-sm" type="submit" name="submit"> Follow </button>
-                                </div>
-                            </form>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
