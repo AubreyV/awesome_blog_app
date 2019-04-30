@@ -18,14 +18,14 @@
                         </div>
 
                         <div class="py-2">
-                            <h2>Your Name</h2>
+                            <h2>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h2>
                         </div>
 
                         <div class="btn-group-justified">
                             <a href="#" class="btn btn-primary">Edit Profile</a>
                         </div>  
 
-                        <hr>
+                        <div class="dropdown-divider my-4"></div>
 
                         <div class="row mt-15">
                             <div class="col-sm-6">
@@ -39,7 +39,7 @@
                         </div>
                     </div>
 
-                    <hr>
+                    <div class="dropdown-divider my-4"></div>
 
                     <div class="media">
                         <div class="media-body">
@@ -57,9 +57,10 @@
 
         <div class="col-sm-8">
             <div class="new-post mb-4">
-                <form>
+                <form action="{{ route('blog.store') }}" method="POST">
+                    @csrf
                     <div class="form-group">
-                        <textarea class="form-control" rows="3" placeholder="Share your thoughts..."></textarea>
+                        <textarea class="form-control" rows="3" placeholder="Share your thoughts..." name="blog_content"></textarea>
                     </div>
                     <div class="text-right">
                         <button class="create-post btn btn-primary" type="submit">Post</button>
