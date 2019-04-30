@@ -71,6 +71,8 @@
             <div class="activity-feed">
                 <div class="well">
                     <div class="page-header mt-0 text-center"><h2>Blogs</h2></div>
+                    
+                    @foreach(Auth::user()->blogs as $blog)
                     <div class="media">             
                         <div class="media-left media-middle">
                             <div class="avatar square">
@@ -87,12 +89,13 @@
                             </div>
                             <div class="card-body">
                                 <blockquote class="blockquote mb-0">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                                <footer class="blockquote-footer">Posted <cite>13 hrs ago</cite></footer>
+                                <p>{{ $blog->content }}</p>
+                                <footer class="blockquote-footer">Posted <cite>{{ \Carbon\Carbon::createFromTimeStamp(strtotime($blog->created_at))->diffForHumans() }}</cite></footer>
                                 </blockquote>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>
