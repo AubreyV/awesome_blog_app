@@ -60,7 +60,7 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        //
+        return view('blogs.edit', compact('blog'));
     }
 
     /**
@@ -72,7 +72,8 @@ class BlogController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        //
+        $blog->update(['content' => $request->input('blog_content')]);
+        return redirect()->route('home');
     }
 
     /**

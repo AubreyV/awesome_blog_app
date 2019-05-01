@@ -84,7 +84,7 @@
 
                         <div class="col-12 card px-0">
                             <div class="card-header text-right py-1">
-                                <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+                                <a class="btn btn-warning" role="button" href="{{ route('blog.edit', ['blog' => $blog]) }}"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>
                                 <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
                             </div>
                             <div class="card-body">
