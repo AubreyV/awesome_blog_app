@@ -61,7 +61,7 @@
                     <div class="page-header mt-0 text-center"><h2>Blogs</h2></div>
                     
                     @foreach($user->blogs as $blog)
-                    <div class="media">             
+                    <div class="media my-3">             
                         <div class="media-left media-middle">
                             <div class="avatar square">
                                 <div class="default">
@@ -72,8 +72,6 @@
 
                         <div class="col-12 card px-0">
                             <div class="card-header text-right py-1">
-                                <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
-                                <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
                             </div>
                             <div class="card-body">
                                 <blockquote class="blockquote mb-0">

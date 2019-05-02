@@ -17,15 +17,17 @@
                 <div class="panel-body">
                     <div class="list-group p-4">
                         @foreach($users as $user)
-                        <div class="list-group-item mb-1"> 
-                            <form class=" d-flex align-items-center" method="post" action="#">
-                                <img src="/images/{{ $user->avatar }}" style="width:50px;height:50px;"> 
-                                <a class="pl-3" href=""> {{ $user->first_name }} {{ $user->last_name }} </a>
-                                <div class="ml-auto">
-                                    <button class="btn btn-primary btn-sm" type="submit" name="submit"> Follow </button>
+                            @if ($user != Auth::user())
+                                <div class="list-group-item mb-1"> 
+                                    <form class=" d-flex align-items-center" method="post" action="#">
+                                        <img src="/images/{{ $user->avatar }}" style="width:50px;height:50px;">
+                                        <a class="pl-3" href="{{ route('user.show', ['id' => $user->id]) }}"> {{ $user->first_name }} {{ $user->last_name }} </a>
+                                        <div class="ml-auto">
+                                            <button class="btn btn-primary btn-sm" type="submit" name="submit"> Follow </button>
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
-                        </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>

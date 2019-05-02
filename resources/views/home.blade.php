@@ -73,7 +73,7 @@
                     <div class="page-header mt-0 text-center"><h2>Blogs</h2></div>
                     
                     @foreach($blogs as $blog)
-                    <div class="media">             
+                    <div class="media my-3">             
                         <div class="media-left media-middle">
                             <div class="avatar square">
                                 <div class="default">
