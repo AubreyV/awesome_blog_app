@@ -72,7 +72,7 @@
                 <div class="well">
                     <div class="page-header mt-0 text-center"><h2>Blogs</h2></div>
                     
-                    @foreach(Auth::user()->blogs as $blog)
+                    @foreach($blogs as $blog)
                     <div class="media">             
                         <div class="media-left media-middle">
                             <div class="avatar square">
