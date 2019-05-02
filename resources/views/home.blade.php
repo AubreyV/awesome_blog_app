@@ -22,7 +22,7 @@
                         </div>
 
                         <div class="btn-group-justified">
-                            <a href="#" class="btn btn-primary">Edit Profile</a>
+                            <a href="{{ route('home.edit') }}" class="btn btn-primary">Edit Profile</a>
                         </div>  
 
                         <div class="dropdown-divider my-4"></div>
