@@ -25,3 +25,4 @@ Route::get('/user/{id}/home', 'UserController@show')->name('user.show');
 Route::post('/blog/store', 'BlogController@store')->name('blog.store');
 Route::get('/blog/{blog}/edit', 'BlogController@edit')->name('blog.edit');
 Route::patch('/blog/{blog}/update', 'BlogController@update')->name('blog.update');
+Route::delete('/blog/{blog}/delete', 'BlogController@destroy')->name('blog.delete');

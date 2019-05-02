@@ -85,7 +85,11 @@
                         <div class="col-12 card px-0">
                             <div class="card-header text-right py-1">
                                 <a class="btn btn-warning" role="button" href="{{ route('blog.edit', ['blog' => $blog]) }}"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>
-                                <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+                                <form class="d-inline" action="{{ route('blog.delete', ['blog' => $blog]) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="btn btn-danger" type="submit"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
+                                </form>
                             </div>
                             <div class="card-body">
                                 <blockquote class="blockquote mb-0">
