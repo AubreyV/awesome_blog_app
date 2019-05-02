@@ -45,7 +45,7 @@
                         <div class="media-body">
                             <div class="btn-group btn-group-justified">
                                 <div class="well text-center">
-                                    <h4>1</h4>
+                                    <h4>{{ $blogs->count() }}</h4>
                                     <small>blogs posted</small>
                                 </div>
                             </div>
