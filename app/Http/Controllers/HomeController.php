@@ -37,16 +37,26 @@ class HomeController extends Controller
 
     public function updateProfile(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
         ]);
-        
-        if ($validator->errors()->count() < 1) {
-            Auth::user()->update($request->all());
-        } else {
-            return redirect()->back()->withErrors($validator);
+
+
+        if (!empty($request->input('new_password'))) {
+            $request->validate([
+                'new_password' => 'required|string|min:6|confirmed'
+            ]);
+
+            Auth::user()->update([
+                'password' => bcrypt($request->input('new_password'))
+            ]);
         }
+
+        Auth::user()->update([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name')
+        ]);
 
         return redirect()->route('home');
     }
