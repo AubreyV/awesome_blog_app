@@ -25,6 +25,7 @@ Route::patch('/home/uploadAvatar', 'HomeController@uploadAvatar')->name('home.up
 
 Route::get('/users', 'UserController@index')->name('users');
 Route::get('/user/{id}/home', 'UserController@show')->name('user.show');
+Route::get('/user/{followed_id}/follow', 'UserController@follow')->name('user.follow');
 
 Route::post('/blog/store', 'BlogController@store')->name('blog.store');
 Route::get('/blog/{blog}/edit', 'BlogController@edit')->name('blog.edit');

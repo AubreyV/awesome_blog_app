@@ -22,9 +22,11 @@
                                     <form class=" d-flex align-items-center" method="post" action="#">
                                         <img src="/images/{{ $user->avatar }}" style="width:50px;height:50px;">
                                         <a class="pl-3" href="{{ route('user.show', ['id' => $user->id]) }}"> {{ $user->first_name }} {{ $user->last_name }} </a>
+                                        @if (Auth::user()->is_following($user->id) == false)
                                         <div class="ml-auto">
-                                            <button class="btn btn-primary btn-sm" type="submit" name="submit"> Follow </button>
+                                            <a href="{{ route('user.follow', ['followed_id' => $user->id]) }}" class="btn btn-primary btn-sm" role="button" name="submit"> Follow </a>
                                         </div>
+                                        @endif
                                     </form>
                                 </div>
                             @endif
