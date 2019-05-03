@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 
 class UserController extends Controller
@@ -85,5 +86,13 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function follow($id)
+    {
+        $followed_user = User::find($id);
+        Auth::user()->following()->save($followed_user);
+
+        return redirect()->route('users');
     }
 }
