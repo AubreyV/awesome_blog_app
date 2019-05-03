@@ -39,6 +39,24 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="new_password" class="col-md-4 col-form-label text-md-right">New Password</label>
+                            <div class="col-md-6">
+                                <input id="new_password" type="password" class="form-control" name="new_password">
+                                @if ($errors->has('new_password'))
+                                    <span class="help-block"><strong>{{ $errors->first('new_password') }}</strong></span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="new_password_confirmation" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <div class="col-md-6 offset-4">
                                 <button type="submit" class="btn btn-primary"> Save </button>
                                 <a href="{{ route('home') }}" class="btn btn-secondary">Back</a>
