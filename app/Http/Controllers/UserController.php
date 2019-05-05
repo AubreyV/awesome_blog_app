@@ -91,8 +91,16 @@ class UserController extends Controller
     public function follow($id)
     {
         $followed_user = User::find($id);
-        Auth::user()->following()->save($followed_user);
+        Auth::user()->following()->attach($followed_user);
 
-        return redirect()->route('users');
+        return redirect()->back();
+    }
+
+    public function unfollow($id)
+    {
+        $followed_user = User::find($id);
+        Auth::user()->following()->detach($followed_user);
+
+        return redirect()->back();
     }
 }
