@@ -24,7 +24,11 @@
                                         <a class="pl-3" href="{{ route('user.show', ['id' => $user->id]) }}"> {{ $user->first_name }} {{ $user->last_name }} </a>
                                         @if (Auth::user()->is_following($user->id) == false)
                                         <div class="ml-auto">
-                                            <a href="{{ route('user.follow', ['followed_id' => $user->id]) }}" class="btn btn-primary btn-sm" role="button" name="submit"> Follow </a>
+                                            <a href="{{ route('user.follow', ['followed_id' => $user->id]) }}" class="btn btn-primary"> Follow </a>
+                                        </div>
+                                        @else
+                                        <div class="ml-auto">
+                                            <a href="{{ route('user.unfollow', ['unfollowed_id' => $user->id]) }}" class="btn btn-danger"> Unfollow </a>
                                         </div>
                                         @endif
                                     </form>
