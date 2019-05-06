@@ -109,7 +109,7 @@ class UserController extends Controller
         $user = User::find($id);
         $followers = $user->followers()->get();
 
-        return view('users.followers', compact('followers'));
+        return view('users.followers', compact('followers', 'user'));
     }
 
     public function following($id)
@@ -117,6 +117,6 @@ class UserController extends Controller
         $user = User::find($id);
         $following = $user->following()->get();
 
-        return view('users.following', compact('following'));
+        return view('users.following', compact('following', 'user'));
     }
 }
