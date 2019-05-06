@@ -68,28 +68,34 @@
                 <div class="well">
                     <div class="page-header mt-0 text-center"><h2>Blogs</h2></div>
                     
-                    @foreach($user->blogs as $blog)
-                    <div class="media my-3">             
-                        <div class="media-left media-middle">
-                            <div class="avatar square">
-                                <div class="default">
-                                    <i class="glyphicon glyphicon-user"></i>
+                    @if (Auth::user()->is_following($user->id) == false)
+                        <div class="text-center text-danger">
+                            <h3> You are not following this user! </h3>
+                        </div>
+                    @else
+                        @foreach($user->blogs as $blog)
+                        <div class="media my-3">             
+                            <div class="media-left media-middle">
+                                <div class="avatar square">
+                                    <div class="default">
+                                        <i class="glyphicon glyphicon-user"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 card px-0">
+                                <div class="card-header text-right py-1">
+                                </div>
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-0">
+                                    <p>{{ $blog->content }}</p>
+                                    <footer class="blockquote-footer">Posted <cite>{{ \Carbon\Carbon::createFromTimeStamp(strtotime($blog->created_at))->diffForHumans() }}</cite></footer>
+                                    </blockquote>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-12 card px-0">
-                            <div class="card-header text-right py-1">
-                            </div>
-                            <div class="card-body">
-                                <blockquote class="blockquote mb-0">
-                                <p>{{ $blog->content }}</p>
-                                <footer class="blockquote-footer">Posted <cite>{{ \Carbon\Carbon::createFromTimeStamp(strtotime($blog->created_at))->diffForHumans() }}</cite></footer>
-                                </blockquote>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
