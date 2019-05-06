@@ -10,7 +10,7 @@
         <div class="col-sm-8 offset-2">
             <div class="panel user-list">
                 <div class="panel-heading p-4">
-                    <h2>Followers</h2>
+                    <h2>{{ $user->first_name }}'s Followers</h2>
                     <div class="pull-right"> </div>
                 </div>
 
@@ -21,9 +21,16 @@
                                 <form class=" d-flex align-items-center" method="post" action="#">
                                     <img src="/images/default.jpg" style="width:50px;height:50px;"> 
                                     <a class="pl-3" href="{{ route('user.show', ['id' => $follower->id]) }}"> {{ $follower->first_name }} {{ $follower->last_name }} </a>
-                                    <div class="ml-auto">
-                                        <a href="{{ route('user.follow', ['followed_id' => $follower->id]) }}" class="btn btn-primary"> Follow </a>
-                                    </div>
+                                    @if (Auth::user()->id == $follower->id)
+                                    @elseif (Auth::user()->is_following($follower->id) === false)
+                                        <div class="ml-auto">
+                                            <a href="{{ route('user.follow', ['followed_id' => $follower->id]) }}" class="btn btn-primary"> Follow </a>
+                                        </div>
+                                    @elseif (Auth::user()->is_following($follower->id) !== false)
+                                        <div class="ml-auto">
+                                            <a href="{{ route('user.unfollow', ['unfollowed_id' => $follower->id]) }}" class="btn btn-danger"> Unfollow </a>
+                                        </div>
+                                    @endif
                                 </form>
                             </div>
                         @endforeach
