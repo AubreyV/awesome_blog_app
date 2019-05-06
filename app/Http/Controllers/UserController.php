@@ -103,4 +103,20 @@ class UserController extends Controller
 
         return redirect()->back();
     }
+
+    public function followers($id)
+    {
+        $user = User::find($id);
+        $followers = $user->followers()->get();
+
+        return view('users.followers', compact('followers'));
+    }
+
+    public function following($id)
+    {
+        $user = User::find($id);
+        $following = $user->following()->get();
+
+        return view('users.following', compact('following'));
+    }
 }

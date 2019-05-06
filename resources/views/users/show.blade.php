@@ -37,11 +37,11 @@
 
                         <div class="row mt-15">
                             <div class="col-sm-6">
-                                <strong><a href="#">6</a></strong>
+                                <strong><a href="{{ route('user.following', ['id' => $user->id]) }}">{{ $user->following()->count() }}</a></strong>
                                 <div>following</div>
                             </div>
                                 <div class="col-sm-6">
-                                    <strong><a href="#">2</a></strong>
+                                    <strong><a href="{{ route('user.followers', ['id' => $user->id]) }}">{{ $user->followers()->count() }}</a></strong>
                                 <div>followers</div>
                             </div>
                         </div>

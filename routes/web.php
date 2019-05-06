@@ -27,6 +27,8 @@ Route::get('/users', 'UserController@index')->name('users');
 Route::get('/user/{id}/home', 'UserController@show')->name('user.show');
 Route::get('/user/{followed_id}/follow', 'UserController@follow')->name('user.follow');
 Route::get('/user/{unfollowed_id}/unfollow', 'UserController@unfollow')->name('user.unfollow');
+Route::get('/user/{id}/followers', 'UserController@followers')->name('user.followers');
+Route::get('/user/{id}/following', 'UserController@following')->name('user.following');
 
 Route::post('/blog/store', 'BlogController@store')->name('blog.store');
 Route::get('/blog/{blog}/edit', 'BlogController@edit')->name('blog.edit');
