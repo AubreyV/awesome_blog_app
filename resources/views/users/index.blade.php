@@ -19,7 +19,7 @@
                         @foreach($users as $user)
                         <div class="list-group-item mb-1"> 
                             <form class=" d-flex align-items-center" method="post" action="#">
-                                <img src="/images/default.jpg" style="width:50px;height:50px;"> 
+                                <img src="/images/{{ $user->avatar }}" style="width:50px;height:50px;"> 
                                 <a class="pl-3" href=""> {{ $user->first_name }} {{ $user->last_name }} </a>
                                 <div class="ml-auto">
                                     <button class="btn btn-primary btn-sm" type="submit" name="submit"> Follow </button>

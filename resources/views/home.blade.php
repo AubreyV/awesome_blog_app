@@ -13,7 +13,7 @@
                     <div class="text-center">
                         <div class="avatar">
                             <div class="default">
-                                <img src="/images/default.jpg" style="width:100px;height:100px;">
+                                <img src="/images/{{ Auth::user()->avatar }}" style="width:100px;height:100px;">
                             </div>
                         </div>
 
