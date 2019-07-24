@@ -20,6 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/edit', 'HomeController@edit')->name('home.edit');
 Route::patch('/home/update', 'HomeController@updateProfile')->name('home.update');
+Route::get('/home/changeAvatar', 'HomeController@changeAvatar')->name('home.changeAvatar');
+Route::patch('/home/uploadAvatar', 'HomeController@uploadAvatar')->name('home.uploadAvatar');
 
 Route::get('/users', 'UserController@index')->name('users');
 Route::get('/user/{id}/home', 'UserController@show')->name('user.show');

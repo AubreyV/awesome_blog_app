@@ -21,7 +21,11 @@
                             <h2>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h2>
                         </div>
 
-                        <div class="btn-group-justified">
+                        <div class="btn-group-justified my-1">
+                            <a href="{{ route('home.changeAvatar') }}" class="btn btn-primary">Change Avatar</a>
+                        </div>
+
+                        <div class="btn-group-justified my-1">
                             <a href="{{ route('home.edit') }}" class="btn btn-primary">Edit Profile</a>
                         </div>  
 
