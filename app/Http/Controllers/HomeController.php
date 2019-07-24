@@ -60,4 +60,29 @@ class HomeController extends Controller
 
         return redirect()->route('home');
     }
+
+    public function changeAvatar()
+    {
+        return view('home.changeAvatar');
+    }
+
+    public function uploadAvatar(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,jpg,png|max:1024'
+        ]);
+
+        // generate a unique image name using time and append the file extention
+        $imageName = time() . '.' . $request->avatar->getClientOriginalExtension();
+
+        // move the avatar to the /public/images path
+        // and save it using the image name generated above
+        $request->avatar->move(public_path('images'), $imageName);
+
+        Auth::user()->update([
+            'avatar' => $imageName
+        ]);
+
+        return redirect()->route('home');
+    }
 }
