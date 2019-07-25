@@ -20,7 +20,7 @@
                             <div class="list-group-item mb-1"> 
                                 <form class=" d-flex align-items-center" method="post" action="#">
                                     <img src="/images/default.jpg" style="width:50px;height:50px;"> 
-                                    <a class="pl-3" href="{{ route('user.show', ['id' => $followee->id]) }}"> {{ $followee->first_name }} {{ $followee->last_name }} </a>
+                                    <a class="pl-3" href="{{ route('home', ['id' => $followee->id]) }}"> {{ $followee->first_name }} {{ $followee->last_name }} </a>
                                     @if (Auth::user()->id == $followee->id)
                                     @elseif (Auth::user()->is_following($followee->id) !== false)
                                         <div class="ml-auto">

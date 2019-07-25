@@ -17,14 +17,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/{id}', 'HomeController@index')->name('home');
 Route::get('/home/edit', 'HomeController@edit')->name('home.edit');
 Route::patch('/home/update', 'HomeController@updateProfile')->name('home.update');
 Route::get('/home/changeAvatar', 'HomeController@changeAvatar')->name('home.changeAvatar');
 Route::patch('/home/uploadAvatar', 'HomeController@uploadAvatar')->name('home.uploadAvatar');
 
 Route::get('/users', 'UserController@index')->name('users');
-Route::get('/user/{id}/home', 'UserController@show')->name('user.show');
 Route::get('/user/{followed_id}/follow', 'UserController@follow')->name('user.follow');
 Route::get('/user/{unfollowed_id}/unfollow', 'UserController@unfollow')->name('user.unfollow');
 Route::get('/user/{id}/followers', 'UserController@followers')->name('user.followers');

@@ -21,7 +21,7 @@
                                 <div class="list-group-item mb-1"> 
                                     <form class=" d-flex align-items-center" method="post" action="#">
                                         <img src="/images/{{ $user->avatar }}" style="width:50px;height:50px;">
-                                        <a class="pl-3" href="{{ route('user.show', ['id' => $user->id]) }}"> {{ $user->first_name }} {{ $user->last_name }} </a>
+                                        <a class="pl-3" href="{{ route('home', ['id' => $user->id]) }}"> {{ $user->first_name }} {{ $user->last_name }} </a>
                                         @if (Auth::user()->is_following($user->id) == false)
                                         <div class="ml-auto">
                                             <a href="{{ route('user.follow', ['followed_id' => $user->id]) }}" class="btn btn-primary"> Follow </a>

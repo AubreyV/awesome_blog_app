@@ -9,6 +9,16 @@ use App\User;
 class UserController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -49,9 +59,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-
-        return view('users.show', compact('user'));
+        //
     }
 
     /**

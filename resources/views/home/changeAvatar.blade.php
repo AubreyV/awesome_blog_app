@@ -32,7 +32,7 @@
                         <div class="form-group row">
                             <div class="col-md-6 offset-4">
                                 <button type="submit" class="btn btn-primary"> Save </button>
-                                <a href="{{ route('home') }}" class="btn btn-secondary">Back</a>
+                                <a href="{{ route('home', ['id' => Auth::user()->id]) }}" class="btn btn-secondary">Back</a>
                             </div>
                         </div>
                     </form>

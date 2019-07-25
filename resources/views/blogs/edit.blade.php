@@ -15,7 +15,7 @@
             </div>
             <div class="text-right">
                 <button class="create-post btn btn-primary" type="submit">Submit</button>
-                <a class="btn btn-secondary" role="button" href="{{ route('home') }}">Back</a>
+                <a class="btn btn-secondary" role="button" href="{{ route('home', ['id' => Auth::user()->id]) }}">Back</a>
             </div>
         </form>
     </div>

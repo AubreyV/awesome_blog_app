@@ -9,6 +9,16 @@ use Illuminate\Support\Facades\Auth;
 class BlogController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -38,7 +48,7 @@ class BlogController extends Controller
     {
         Auth::user()->blogs()->create(['content' => $request->input('blog_content')]);
 
-        return redirect()->route('home');
+        return redirect()->route('home', ['id' => Auth::user()->id]);
     }
 
     /**
@@ -73,7 +83,7 @@ class BlogController extends Controller
     public function update(Request $request, Blog $blog)
     {
         $blog->update(['content' => $request->input('blog_content')]);
-        return redirect()->route('home');
+        return redirect()->route('home', ['id' => Auth::user()->id]);
     }
 
     /**
@@ -85,6 +95,6 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         $blog->delete();
-        return redirect()->route('home');
+        return redirect()->route('home', ['id' => Auth::user()->id]);
     }
 }

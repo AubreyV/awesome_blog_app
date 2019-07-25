@@ -13,31 +13,26 @@
                     <div class="text-center">
                         <div class="avatar">
                             <div class="default">
-                                <img src="/images/{{ Auth::user()->avatar }}" style="width:100px;height:100px;">
+                                <img src="/images/{{ $user->avatar }}" style="width:100px;height:100px;">
                             </div>
                         </div>
 
                         <div class="py-2">
-                            <h2>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h2>
+                            <h2>{{ $user->first_name }} {{ $user->last_name }}</h2>
                         </div>
 
-                        <div class="btn-group-justified my-1">
-                            <a href="{{ route('home.changeAvatar') }}" class="btn btn-primary">Change Avatar</a>
-                        </div>
-
-                        <div class="btn-group-justified my-1">
-                            <a href="{{ route('home.edit') }}" class="btn btn-primary">Edit Profile</a>
-                        </div>  
+                        @includeWhen(Auth::user()->id == $user->id, 'partials.editProfileAvatar')
+                        @includeWhen(Auth::user()->id != $user->id, 'partials.followAction', compact('user'))
 
                         <div class="dropdown-divider my-4"></div>
 
                         <div class="row mt-15">
                             <div class="col-sm-6">
-                                <strong><a href="{{ route('user.following', ['id' => Auth::user()->id]) }}">{{ Auth::user()->following()->count() }}</a></strong>
+                                <strong><a href="{{ route('user.following', ['id' => $user->id]) }}">{{ $user->following()->count() }}</a></strong>
                                 <div>following</div>
                             </div>
                                 <div class="col-sm-6">
-                                    <strong><a href="{{ route('user.followers', ['id' => Auth::user()->id]) }}">{{ Auth::user()->followers()->count() }}</a></strong>
+                                    <strong><a href="{{ route('user.followers', ['id' => $user->id]) }}">{{ $user->followers()->count() }}</a></strong>
                                 <div>followers</div>
                             </div>
                         </div>
@@ -60,50 +55,18 @@
         </div>
 
         <div class="col-sm-8">
-            <div class="new-post mb-4">
-                <form action="{{ route('blog.store') }}" method="POST">
-                    @csrf
-                    <div class="form-group">
-                        <textarea class="form-control" rows="3" placeholder="Share your thoughts..." name="blog_content"></textarea>
-                    </div>
-                    <div class="text-right">
-                        <button class="create-post btn btn-primary" type="submit">Post</button>
-                    </div>
-                </form>
-            </div>
+            
+            @includeWhen(Auth::user()->id == $user->id, 'partials.newPost')
 
             <div class="activity-feed">
                 <div class="well">
                     <div class="page-header mt-0 text-center"><h2>Blogs</h2></div>
                     
-                    @foreach($blogs as $blog)
-                    <div class="media my-3">             
-                        <div class="media-left media-middle">
-                            <div class="avatar square">
-                                <div class="default">
-                                    <i class="glyphicon glyphicon-user"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 card px-0">
-                            <div class="card-header text-right py-1">
-                                <a class="btn btn-warning" role="button" href="{{ route('blog.edit', ['blog' => $blog]) }}"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>
-                                <form class="d-inline" action="{{ route('blog.delete', ['blog' => $blog]) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button class="btn btn-danger" type="submit"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
-                                </form>
-                            </div>
-                            <div class="card-body">
-                                <blockquote class="blockquote mb-0">
-                                <p>{{ $blog->content }}</p>
-                                <footer class="blockquote-footer">Posted <cite>{{ \Carbon\Carbon::createFromTimeStamp(strtotime($blog->created_at))->diffForHumans() }}</cite></footer>
-                                </blockquote>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+                    @if (Auth::user()->is_following($user->id) || Auth::user()->id == $user->id)
+                        @include('partials.blogs', ['blogs' => $blogs, 'allowedToShow' => true])
+                    @else
+                        @include('partials.blogs', ['blogs' => $blogs, 'allowedToShow' => false])
+                    @endif
                 </div>
             </div>
         </div>

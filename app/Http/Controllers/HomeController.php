@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Blog;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -24,10 +25,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index($id)
     {
-        $blogs = Auth::user()->blogs()->orderBy('created_at', 'desc')->get();
-        return view('home', compact('blogs'));
+        $user = User::findOrFail($id);
+        $blogs = $user->blogs()->orderBy('created_at', 'desc')->get();
+
+        return view('home', compact('blogs', 'user'));
     }
 
     public function edit()
@@ -58,7 +61,7 @@ class HomeController extends Controller
             'last_name' => $request->input('last_name')
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('home', ['id' => Auth::user()->id]);
     }
 
     public function changeAvatar()
@@ -83,6 +86,6 @@ class HomeController extends Controller
             'avatar' => $imageName
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('home', ['id' => Auth::user()->id]);
     }
 }
